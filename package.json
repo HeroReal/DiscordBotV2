@@ -6,6 +6,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "^14.0.0"  // Ensure the version matches your bot's code requirements
+    "discord.js": "^14.0.0"
   }
 }
