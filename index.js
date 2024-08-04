@@ -1,14 +1,24 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+require('dotenv').config();
 
-client.once('ready', () => {
-  console.log('Bot is online!');
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-client.on('messageCreate', message => {
+const TOKEN = process.env.DISCORD_TOKEN;
+
+client.once('ready', () => {
+  console.log(`Logged in as ${client.user.tag}`);
+});
+
+client.on('messageCreate', (message) => {
   if (message.content === '!ping') {
     message.channel.send('Pong!');
   }
 });
 
-client.login(process.env.DISCORD_BOT_TOKEN);
+client.login(TOKEN);
+
+module.exports = (req, res) => {
+  res.status(200).send('Bot is running');
+};
